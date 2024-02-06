@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import title from './pageTitle'
+import auth from './auth'
 
 export default createStore({
   state: {
@@ -10,5 +12,7 @@ export default createStore({
   actions: {
   },
   modules: {
+    title,
+    auth
   }
 })
