@@ -3,7 +3,7 @@
         <div class="title">
           Title
         </div>
-        <div v-if="user.role == 'admin'">
+        <div v-if="user.role == 'landlord'">
             <div class="admin-profile">
                 <div class="avatar-container">
                     <div class="avatar">

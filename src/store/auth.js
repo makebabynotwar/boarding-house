@@ -35,7 +35,7 @@ export default {
   actions: {
       async login({dispatch}, credentials) {
         let response = await axios.post('auth/login', credentials);
-        return dispatch('attempt', response.data.access_token);
+        return dispatch('attempt', response.data.token);
       },
       async attempt({commit, state}, token){
           if(token) {

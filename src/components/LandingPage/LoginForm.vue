@@ -52,6 +52,7 @@ export default {
 			.then(()=>{
 				this.error.mode = false;
 				this.loadState = false;
+				
 			})
 			.catch(()=>{
 				this.error.mode = true;
