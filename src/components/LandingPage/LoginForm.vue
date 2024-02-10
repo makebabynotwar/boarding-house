@@ -1,29 +1,30 @@
 <template>
-    <form @submit.prevent="submitCredentials">
-		<div class="title">
-          Title
-        </div>
-		<input 
-			class="username" 
-			v-model.trim="form.email" 
-			type="text" 
-			placeholder="Email"
-			required 
-		>
-		<input 
-			class="password" 
-			v-model.trim="form.password" 
-			type="password" 
-			placeholder="Password"
-			required
-		>
-		<!-- <button >Login</button> -->
-		<div v-if="loadState" class="loader">Authenticating...</div>
-		<button v-else type="submit">Login</button>
-		<div class="error" v-if="error.mode">
-			<small>Incorrect email or password.</small>
-		</div>
-	</form>
+	<div class="login-form">
+		<form @submit.prevent="submitCredentials">
+			<div class="title">
+			Title
+			</div>
+			<input 
+				class="username" 
+				v-model.trim="form.email" 
+				type="text" 
+				placeholder="Email"
+				required 
+			>
+			<input 
+				class="password" 
+				v-model.trim="form.password" 
+				type="password" 
+				placeholder="Password"
+				required
+			>
+			<div v-if="loadState" class="loader">Authenticating...</div>
+			<button v-else type="submit">Login</button>
+			<div class="error" v-if="error.mode">
+				<small>Incorrect email or password.</small>
+			</div>
+		</form>
+	</div>
 </template>
 
 <script>

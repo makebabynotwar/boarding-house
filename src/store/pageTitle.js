@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state() {
       return {
-        title: 'Title of the App'
+        title: 'Boarding Reservation'
       }
     },
     actions: {

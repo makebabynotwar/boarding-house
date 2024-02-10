@@ -48,7 +48,7 @@ export default {
           }
 
         try {
-            let response = await axios.get('auth/Me');
+            let response = await axios.get('auth/me');
             commit('SET_USER', response.data);
             commit('SET_ROLE', response.data.role);
         } 
