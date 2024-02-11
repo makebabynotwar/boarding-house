@@ -1,13 +1,85 @@
 <template>
-    <div>
-        Registration
+    <div class="register_page">
+        <header class="landing_header">
+            <div class="wrapper">
+                <div class="landing_header_con">
+                    <div class="landing_logo">
+                        <a href="/">
+                            <svg viewBox="0 0 230 72.25063058820867" height="72.25063058820867" width="230" style="width: 230px; height: 72.2506px;  z-index: 0; cursor: pointer; overflow: visible; "><defs id="SvgjsDefs1448"></defs><g id="SvgjsG1449" featurekey="UqkkrJ-0" transform="matrix(0.8424747586250305,0,0,0.8424747586250305,-12.637121544537077,-5.456779289161911)" fill="#ffe98a"><g xmlns="http://www.w3.org/2000/svg" transform="translate(0,-952.36218)"><path style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;opacity:1;color:;fill:#ffe98a;fill-opacity:1;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" d="M 39 25.46875 L 38.25 26.3125 L 28 37.90625 L 28 36 L 28 35 L 27 35 L 21 35 L 20 35 L 20 36 L 20 46.9375 L 15.25 52.3125 L 16.75 53.65625 L 20 49.96875 L 20 72 L 15 72 L 15 74 L 85 74 L 85 72 L 45 72 L 45 58 L 45 57 L 44 57 L 34 57 L 33 57 L 33 58 L 33 72 L 22 72 L 22 47.71875 L 39 28.5 L 61.25 53.65625 L 61.5625 54 L 62 54 L 78 54 L 78 67 L 80 67 L 80 54 L 84 54 L 86.21875 54 L 84.75 52.3125 L 69.75 35.3125 L 69.4375 35 L 69 35 L 47.4375 35 L 39.75 26.3125 L 39 25.46875 z M 22 37 L 26 37 L 26 40.15625 L 22 44.6875 L 22 37 z M 49.21875 37 L 68.5625 37 L 81.78125 52 L 62.46875 52 L 49.21875 37 z M 57 57 L 57 58 L 57 66 L 57 67 L 58 67 L 74 67 L 75 67 L 75 66 L 75 58 L 75 57 L 74 57 L 58 57 L 57 57 z M 35 59 L 43 59 L 43 72 L 35 72 L 35 59 z M 59 59 L 65 59 L 65 65 L 59 65 L 59 59 z M 67 59 L 73 59 L 73 65 L 67 65 L 67 59 z " transform="translate(0,952.36218)"></path></g></g><g id="SvgjsG1450" featurekey="0kuQ8p-0" transform="matrix(3.66568922996521,0,0,3.66568922996521,74.57477974597023,-19.281521384679234)" fill="#ffffff"><path d="M3.42 7.300000000000001 l0 4.42 l3.5 0 c1.86 0 3 -0.56 3 -2.32 c0 -1.34 -0.82 -2.1 -2.98 -2.1 l-3.52 0 z M1.48 20 l0 -14.36 l6.32 0 c2.68 0 4.06 1.66 4.06 3.62 c0 0.94 -0.34 2.26 -1.92 3 c0.94 0.38 2.6 1.04 2.6 3.5 c0 2.3 -1.7 4.24 -4.88 4.24 l-6.18 0 z M3.42 13.3 l0 5.04 l4.14 0 c2.02 0 3.04 -1.02 3.04 -2.62 c0 -2.02 -1.78 -2.42 -3.36 -2.42 l-3.82 0 z M28.560000000000002 20 l-1.88 0 l0 -8.48 c0 -0.42 0.04 -2.24 0.04 -3.58 l-0.04 0 l-4.04 12.06 l-1.92 0 l-4.04 -12.04 l-0.04 0 c0 1.32 0.04 3.14 0.04 3.56 l0 8.48 l-1.88 0 l0 -14.36 l2.78 0 l4.1 12.14 l0.04 0 l4.08 -12.14 l2.76 0 l0 14.36 z M42 9.84 l-1.82 0 c-0.1 -2.22 -1.94 -2.92 -3.56 -2.92 c-1.22 0 -3.28 0.34 -3.28 2.52 c0 1.22 0.86 1.62 1.7 1.82 l4.1 0.94 c1.86 0.44 3.26 1.56 3.26 3.84 c0 3.4 -3.16 4.34 -5.62 4.34 c-2.66 0 -3.7 -0.8 -4.34 -1.38 c-1.22 -1.1 -1.46 -2.3 -1.46 -3.64 l1.82 0 c0 2.6 2.12 3.36 3.96 3.36 c1.4 0 3.76 -0.36 3.76 -2.42 c0 -1.5 -0.7 -1.98 -3.06 -2.54 l-2.94 -0.68 c-0.94 -0.22 -3.06 -0.88 -3.06 -3.38 c0 -2.24 1.46 -4.44 4.94 -4.44 c5.02 0 5.52 3 5.6 4.58 z"></path></g><g id="SvgjsG1451" featurekey="Nh6iBa-0" transform="matrix(0.5056226849555969,0,0,0.5056226849555969,79.68651398262487,62.047164066476135)" fill="#ffffff"><path d="M4.1 14.2 l0 -2 l3.08 0 l0 4.44 c0 2.24 -1.12 3.52 -3.28 3.52 s-3.28 -1.28 -3.28 -3.52 l0 -7.28 c0 -2.24 1.12 -3.52 3.28 -3.52 s3.28 1.28 3.28 3.52 l0 1.36 l-2.08 0 l0 -1.5 c0 -1 -0.44 -1.38 -1.14 -1.38 s-1.14 0.38 -1.14 1.38 l0 7.56 c0 1 0.44 1.36 1.14 1.36 s1.14 -0.36 1.14 -1.36 l0 -2.58 l-1 0 z M24.4679375 20 l-2.24 0 c-0.12 -0.36 -0.2 -0.58 -0.2 -1.72 l0 -2.2 c0 -1.3 -0.44 -1.78 -1.44 -1.78 l-0.76 0 l0 5.7 l-2.2 0 l0 -14 l3.32 0 c2.28 0 3.26 1.06 3.26 3.22 l0 1.1 c0 1.44 -0.46 2.36 -1.44 2.82 l0 0.04 c1.1 0.46 1.46 1.5 1.46 2.96 l0 2.16 c0 0.68 0.02 1.18 0.24 1.7 z M20.8879375 8 l-1.06 0 l0 4.3 l0.86 0 c0.82 0 1.32 -0.36 1.32 -1.48 l0 -1.38 c0 -1 -0.34 -1.44 -1.12 -1.44 z M39.575875 6 l2.24 14 l-2.22 0 l-0.38 -2.54 l-2.7 0 l-0.38 2.54 l-2.02 0 l2.24 -14 l3.22 0 z M37.835875 8.48 l-1.04 7.08 l2.12 0 l-1.04 -7.08 l-0.04 0 z M55.1838125 6 c2.28 0 3.26 1.06 3.26 3.22 l0 0.5 c0 1.44 -0.44 2.34 -1.42 2.8 l0 0.04 c1.18 0.46 1.64 1.5 1.64 2.98 l0 1.14 c0 2.16 -1.14 3.32 -3.34 3.32 l-3.46 0 l0 -14 l3.32 0 z M55.0438125 13.7 l-0.98 0 l0 4.3 l1.26 0 c0.74 0 1.14 -0.34 1.14 -1.38 l0 -1.22 c0 -1.3 -0.42 -1.7 -1.42 -1.7 z M55.12381250000001 8 l-1.06 0 l0 3.7 l0.86 0 c0.82 0 1.32 -0.36 1.32 -1.48 l0 -0.78 c0 -1 -0.34 -1.44 -1.12 -1.44 z M83.19968750000001 20 l0 -4.64 l-2.78 -9.36 l2.3 0 l1.66 6.38 l0.04 0 l1.66 -6.38 l2.1 0 l-2.78 9.36 l0 4.64 l-2.2 0 z M99.80762500000002 9.22 l0 7.56 c0 1 0.44 1.38 1.14 1.38 s1.14 -0.38 1.14 -1.38 l0 -7.56 c0 -1 -0.44 -1.38 -1.14 -1.38 s-1.14 0.38 -1.14 1.38 z M97.60762500000003 16.64 l0 -7.28 c0 -2.24 1.18 -3.52 3.34 -3.52 s3.34 1.28 3.34 3.52 l0 7.28 c0 2.24 -1.18 3.52 -3.34 3.52 s-3.34 -1.28 -3.34 -3.52 z M114.63556250000003 6 l2.2 0 l0 10.8 c0 1 0.44 1.36 1.14 1.36 s1.14 -0.36 1.14 -1.36 l0 -10.8 l2.08 0 l0 10.66 c0 2.24 -1.12 3.52 -3.28 3.52 s-3.28 -1.28 -3.28 -3.52 l0 -10.66 z M138.56350000000003 20 l-2.24 0 c-0.12 -0.36 -0.2 -0.58 -0.2 -1.72 l0 -2.2 c0 -1.3 -0.44 -1.78 -1.44 -1.78 l-0.76 0 l0 5.7 l-2.2 0 l0 -14 l3.32 0 c2.28 0 3.26 1.06 3.26 3.22 l0 1.1 c0 1.44 -0.46 2.36 -1.44 2.82 l0 0.04 c1.1 0.46 1.46 1.5 1.46 2.96 l0 2.16 c0 0.68 0.02 1.18 0.24 1.7 z M134.98350000000005 8 l-1.06 0 l0 4.3 l0.86 0 c0.82 0 1.32 -0.36 1.32 -1.48 l0 -1.38 c0 -1 -0.34 -1.44 -1.12 -1.44 z M160.91937500000006 20 l0 -14 l3.48 0 c2.2 0 3.28 1.22 3.28 3.46 l0 7.08 c0 2.24 -1.08 3.46 -3.28 3.46 l-3.48 0 z M164.35937500000006 8 l-1.24 0 l0 10 l1.24 0 c0.7 0 1.12 -0.36 1.12 -1.36 l0 -7.28 c0 -1 -0.42 -1.36 -1.12 -1.36 z M184.94731250000004 20 l-2.24 0 c-0.12 -0.36 -0.2 -0.58 -0.2 -1.72 l0 -2.2 c0 -1.3 -0.44 -1.78 -1.44 -1.78 l-0.76 0 l0 5.7 l-2.2 0 l0 -14 l3.32 0 c2.28 0 3.26 1.06 3.26 3.22 l0 1.1 c0 1.44 -0.46 2.36 -1.44 2.82 l0 0.04 c1.1 0.46 1.46 1.5 1.46 2.96 l0 2.16 c0 0.68 0.02 1.18 0.24 1.7 z M181.36731250000005 8 l-1.06 0 l0 4.3 l0.86 0 c0.82 0 1.32 -0.36 1.32 -1.48 l0 -1.38 c0 -1 -0.34 -1.44 -1.12 -1.44 z M197.37525000000005 8 l0 3.9 l3.02 0 l0 2 l-3.02 0 l0 4.1 l3.8 0 l0 2 l-6 0 l0 -14 l6 0 l0 2 l-3.8 0 z M216.44318750000005 6 l2.24 14 l-2.22 0 l-0.38 -2.54 l-2.7 0 l-0.38 2.54 l-2.02 0 l2.24 -14 l3.22 0 z M214.70318750000004 8.48 l-1.04 7.08 l2.12 0 l-1.04 -7.08 l-0.04 0 z M231.77112500000004 6 l1.6 9.94 l0.04 0 l1.48 -9.94 l3.06 0 l0 14 l-2.08 0 l0 -10.04 l-0.04 0 l-1.48 10.04 l-2.08 0 l-1.6 -9.9 l-0.04 0 l0 9.9 l-1.92 0 l0 -14 l3.06 0 z"></path></g></svg>
+                        </a>
+                    </div>
+                    <div class="landing_nav">
+                        <router-link to="/login">Login</router-link>
+                        <router-link to="/register">Register</router-link>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="banner">
+            <div class="wrapper">
+                <div class="banner_con">
+                    <div class="bnr_info">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="register_form">
+            <form @submit.prevent="submitCredentials">
+                <div class="title">
+                    Register
+                </div>
+                <div class="flex_box">
+                    <input 
+                    class="firstname" 
+                    type="text" 
+                    placeholder="Firstname"
+                    required 
+                    >
+                    <input 
+                        class="lastname" 
+                        type="text" 
+                        placeholder="Lastname"
+                        required
+                    >
+                </div>
+                <label class="register_label">Register as?</label>
+                <div class="radio_group">
+                    <label>
+                        <input type="radio" name="user_type" value="tenant" required> <span>Tenant</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="user_type" value="land_owner" required> <span>Land Owner</span>
+                    </label>
+                </div>
+                <input 
+                    class="username" 
+                    type="text" 
+                    placeholder="Email"
+                    required 
+                >
+                <input 
+                    class="password" 
+                    type="password" 
+                    placeholder="Password"
+                    required
+                >
+                
+                <button class="submit" type="submit">Submit</button>
+            </form>
+	    </div>
     </div>
 </template>
 
 <script>
-    export default {
-        
+import RegisterForm from '@/components/LandingPage/RegisterForm';
+export default {
+    component:{
+        RegisterForm
     }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,8 @@
 	<div class="login-form">
 		<form @submit.prevent="submitCredentials">
 			<div class="title">
-			Title
+				<span>Have an account?</span>
+				Login
 			</div>
 			<input 
 				class="username" 
@@ -19,7 +20,7 @@
 				required
 			>
 			<div v-if="loadState" class="loader">Authenticating...</div>
-			<button v-else type="submit">Login</button>
+			<button class="login" v-else type="submit">Login</button>
 			<div class="error" v-if="error.mode">
 				<small>Incorrect email or password.</small>
 			</div>

@@ -4,6 +4,7 @@
 
 <script>
 import axios from 'axios'
+import './assets/css/main.css';
 
   export default {
     created(){
