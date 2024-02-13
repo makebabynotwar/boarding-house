@@ -235,3 +235,31 @@ a,div{
         }
     }
 }
+
+
+
+/*Room List User*/
+.room_boxes{display: flex;flex-wrap: wrap;gap: 15px;margin: 50px 0 0 50px;height: calc(100vh - 115px);overflow: auto;}
+.room_box{width: 24%;border-radius: 10px;}
+.room_box:hover{cursor: pointer;}
+.room_box img{max-height: 247px;border-radius: 10px;}
+.room_details{position: relative;padding: 20px 0;}
+.room_box h2{font-family: 'Roboto', sans-serif;font-size: 20px;font-weight: 600;margin-bottom: 10px;}
+.room_box p{font-size: 16px;font-weight: 300;color: #9e9c9b;}
+
+.room_box .room_address{padding-left: 18px;}
+.room_box .room_address::before{content: url('assets/images/address.png');position: absolute;left: 0;}
+
+.room_box .room_cont{margin-top: 5px;}
+.room_box .room_cont p{color: #000;position: relative;}
+.room_box .room_cont .room_electric{padding-left: 18px;}
+.room_box .room_cont .room_electric::before{content: url('assets/images/electricity.png');position: absolute;left: 0; top: 50%;transform: translateY(-50%);}
+.room_box .room_cont .room_water{padding-left: 18px;}
+.room_box .room_cont .room_water::before{content: url('assets/images/water.png');position: absolute;left: 0; top: 50%;transform: translateY(-50%);}
+.room_box .room_cont .room_capacity{padding-left: 18px;}
+.room_box .room_cont .room_capacity::before{content: url('assets/images/capacity.png');position: absolute;left: 0; top: 50%;transform: translateY(-50%);}
+.room_box .room_cont .room_price{margin-top: 5px;}
+.room_box .room_cont .room_price span{font-weight: 500;}
+
+.room_box .room_rating{display: flex;align-items: center;position: absolute;right: 0;top: 20px;}
+.room_box .room_rating span{display: block;margin-left: 5px;}

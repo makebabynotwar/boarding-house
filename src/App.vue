@@ -5,6 +5,8 @@
 <script>
 import axios from 'axios'
 import './assets/css/main.css';
+import './assets/scss/admin.css';
+
 
   export default {
     created(){

@@ -7,44 +7,38 @@
                 <div class="main_heading">
 
                     <div class="inner_heading">
-                        <h1>Dashboard</h1> 
+                        <h1>Rooms</h1> 
+                    </div>
+
+                    <div class="header_button">
+                        <a href="javascript:;" class="btn orange" @click="add_room = true">
+                            Add New Rooms
+                        </a>
                     </div>
 
                 </div>
                 <div class="main_body">
 
                     <div class="default_container">
-
-                        <div class="dashboard_boxes">
-                            <div class="dashboard_box tenant">
-                                <h2>150</h2>
-                                <p>Number of Tenants</p>
-                                <a href="javascript:;">More info</a>
-                            </div>
-                            <div class="dashboard_box rooms">
-                                <h2>150</h2>
-                                <p>Number of Rooms</p>
-                                <a href="javascript:;">More info</a>
-                            </div>
-                        </div>
-
                         <div class="custom_datatable">
                             <table class="">
                                 <colgroup>
-                                    <col width="15%"><col width="10%"><col width="10%"><col width="30%"><col width="10%">
+                                    <col width="5%"><col width="10%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
                                 </colgroup>
 
                                 <thead>
                                     
 
                                     <tr>
-                                        <th class="tenant_info"><span>Tenant Info</span></th>
+                                        <th class="room_no"><span>Room No.</span></th>
 
-                                        <th class="tenant_info"><span>Room No.</span></th>
-
-                                        <th class="tenant_payment"><span>Monthly Payment</span></th>
+                                        <th class="room_payment"><span>Monthly Payment</span></th>
                                     
-                                        <th class="tenant_address"><span>Address</span></th>
+                                        <th class="room_capacity"><span>Capacity</span></th>
+
+                                        <th class="room_type"><span>Room Type:</span></th>
+
+                                        <th class="room_amenities"><span>Room Amenities:</span></th>
 
                                        
                                     
@@ -54,37 +48,29 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="tenant_info">
-                                            <span> <strong>Name:</strong> Dr.Strange</span>
-                                            <span> <strong> Contact:</strong> 0234-442-212</span>
-                                            <span><strong>Email:</strong> c@gmail.com</span>
+                                        <td class="room_no"><span>5</span></td>
 
-                                        </td>
-                                        <td class="tenant_info"><span>5</span></td>
+                                        <td class="room_payment">P<span>5000</span></td>
 
-                                        <td class="tenant_address">P<span>5000</span></td>
-                                        <td class="tenant_address"><span>Dr.Tojong St. Poblacion, Marikina City</span></td>
+                                        <td class="room_capacity"><span>2</span></td>
 
-                                    
+                                        <td class="room_type"><span>Single</span></td>
+
+                                        <td class="room_amenities"><span>TV,Wifi</span></td>
+
                                         <td class="tenant_action">
-                                            <a href="javascript:;" class="action edit" @click="edit_tenant = true">
+                                            <a href="javascript:;" class="action edit">
                                             
                                                 <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
                                                     <title/>
-
                                                     <g id="Complete">
-
                                                     <g id="edit">
-
                                                     <g>
-
                                                     <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                                                     <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                                                     </g>
                                                     </g>
                                                     </g>
-
                                                 </svg>
 
                                             </a> 
@@ -107,25 +93,19 @@
             </div>
             
         </div>
-
-        <EditTenant v-if="edit_tenant" @close="closeTenant"/>
+        <AddRoom v-if="add_room" @close="add_room = false"/>
     </div>
 </template>
 
 <script>
-import EditTenant from '@/components/Modal/EditTenant';
+import AddRoom from '@/components/Modal/AddRoom';
 export default {
     components:{
-        EditTenant,
+        AddRoom
     },
     data(){
         return{
-            edit_tenant : false,
-        }
-    },
-    methods:{
-        closeTenant(){
-            this.edit_tenant = false
+            add_room : false,
         }
     }
 }

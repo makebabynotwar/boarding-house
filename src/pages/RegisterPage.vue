@@ -45,15 +45,6 @@
                         required
                     >
                 </div>
-                <label class="register_label">Register as?</label>
-                <div class="radio_group">
-                    <label>
-                        <input type="radio" name="user_type" value="tenant" required> <span>Tenant</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="user_type" value="land_owner" required> <span>Land Owner</span>
-                    </label>
-                </div>
                 <input 
                     class="username" 
                     type="text" 
