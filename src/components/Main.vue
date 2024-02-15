@@ -2,11 +2,51 @@
     <div class="main_area">
         <div class="wrapper">
             <div class="main_con">
-                <div class="search_box">
-                    <input class="search_input" type="text" placeholder="Search place or boarding house"/>
-                    <button class="search_button">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11V11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#bababa"></path></svg>
-                    </button>
+                <div class="search_con">
+                    <div class="search_box">
+                        <input class="search_input" type="text" placeholder="Search place or boarding house"/>
+                        <button class="search_button">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11V11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#bababa"></path></svg>
+                        </button>
+                    </div>
+                    <div class="filter_con">
+                        <div class="price_range_con">
+                            <h4>Price Range</h4>
+                            <div class="price_range">
+                                <button type="button" :class="active" @click="price_dropdown = !price_dropdown">4000 - 5000</button>
+                                <ul class="dropdown" v-if="price_dropdown">
+                                    <li :class="active"><span>5000 and above</span></li>
+                                    <li><span>4000 - 5000</span></li>
+                                    <li><span>1500 - 4000</span></li>
+                                    <li><span>1500 and below</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="price_range_con">
+                            <h4>Room Capacity</h4>
+                            <div class="price_range">
+                                <button type="button" :class="active" @click="capacity_dropdown = !capacity_dropdown">1</button>
+                                <ul class="dropdown" v-if="capacity_dropdown">
+                                    <li :class="active"><span>1</span></li>
+                                    <li><span>2</span></li>
+                                    <li><span>3</span></li>
+                                    <li><span>4</span></li>
+                                    <li><span>5</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="price_range_con">
+                            <h4>Room Type</h4>
+                            <div class="price_range">
+                                <button type="button" :class="active" @click="room_type_dropdown = !room_type_dropdown">Single</button>
+                                <ul class="dropdown" v-if="room_type_dropdown">
+                                    <li :class="active"><span>Single</span></li>
+                                    <li><span>Double</span></li>
+                                    <li><span>Suite</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="room_boxes">
                     <div class="room_box" v-for="room in rooms">
@@ -176,7 +216,10 @@ export default {
                     electricity : 'metered',
                     capacity : 2,
                 },
-            ]  
+            ],
+            price_dropdown : false,
+            capacity_dropdown : false,
+            room_type_dropdown : false,
         }
     }
 

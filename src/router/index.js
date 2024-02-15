@@ -23,6 +23,11 @@ const routes = [
     component: ()=>import(`@/pages/BoardingRooms`)
   },
   {
+    path: '/user',
+    name: 'user',
+    component: ()=>import(`@/pages/UserPage`)
+  },
+  {
     path: '/admin',
     name: 'admin',
     redirect: {name: 'adminDashboard'},
