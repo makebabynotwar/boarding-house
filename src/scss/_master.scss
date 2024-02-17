@@ -377,6 +377,8 @@ a,div{
             padding-left: 50px;
         }
         .user_form{
+            height: calc(100vh - 193px);
+            overflow: auto;
             form{
                 display: flex;
                 gap: 15px;
@@ -868,6 +870,8 @@ a,div{
                 }
             }
             .user_form{
+                height: unset;
+                overflow: unset;
                 form{
                     display: block;
                     .form_con{
