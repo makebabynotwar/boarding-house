@@ -45,17 +45,26 @@
                             <button type="button">Save</button>
                         </div>
                     </div>
+<!-- 
+  <DatePicker v-model="date" /> -->
                 </div>
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
+import { Calendar,DatePicker } from 'v-calendar';
 export default {
+    components:{
+        Calendar,
+        DatePicker
+    },
     data(){
         return{
             edit_details: false,
+            date : null,
         }
     }
 }

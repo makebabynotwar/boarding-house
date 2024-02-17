@@ -66,18 +66,39 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display: block; height: 12px; width: 12px; fill: currentcolor;" aria-hidden="true" role="presentation" focusable="false"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>
                                 <span>{{ room.rate }}</span>
                             </div>
+                            <button class="reservation" type="button" @click="reserveBtn()">Reservation</button>
                         </div>
                     </div>
                 </div>
             </div>
             
         </div>
+        <div class="calendar_con" v-if="reserve_popup">
+            <a href="javascript:;" class="calendar_close" @click="reserve_popup = false">
+                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" fill="white"/>
+                        <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <div class="calendar_picker">
+                <h4>Pick your date for reservation</h4>
+                <DatePicker v-model.range="range" mode="dateTime" :min-date="new Date()"/>
+                <div class="calendar_btn">
+                    <button @click="reserve_popup = false">Cancel</button>
+                    <button>Proceed</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import { Calendar,DatePicker } from 'v-calendar';
 export default {
     components: {
+        Calendar,
+        DatePicker
     },
     data(){
         return{
@@ -220,6 +241,12 @@ export default {
             price_dropdown : false,
             capacity_dropdown : false,
             room_type_dropdown : false,
+            reserve_popup : false,
+        }
+    },
+    methods:{
+        reserveBtn(){
+            this.reserve_popup = true;
         }
     }
 

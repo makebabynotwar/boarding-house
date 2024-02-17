@@ -14,6 +14,8 @@
                 <ul>
                     <li><a href="javascript:;"><span class="dashboard">DashBoard</span></a></li>
                     <li><a href="javascript:;"><span class="room">List Of Rooms</span></a></li>
+                    <li><a href="javascript:;"><span class="room">Reservation</span></a></li>
+                    <li><a href="javascript:;"><span class="room">Maintenance</span></a></li>
                 </ul>
             </div>
         </div>

@@ -13,6 +13,8 @@
                         <div class="dropdown" v-if="dropdown">
                             <ul>
                                 <li><a href="">Logout</a></li>
+                                <li><a href="">User Profile</a></li>
+
                             </ul>
                         </div>
                     </div>

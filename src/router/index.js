@@ -28,6 +28,16 @@ const routes = [
     component: ()=>import(`@/pages/UserPage`)
   },
   {
+    path: '/maintenance',
+    name: 'maintenance',
+    component: ()=>import(`@/pages/MaintenancePage`)
+  },
+  {
+    path: '/reservation',
+    name: 'reservation',
+    component: ()=>import(`@/pages/ReservationPage`)
+  },
+  {
     path: '/admin',
     name: 'admin',
     redirect: {name: 'adminDashboard'},

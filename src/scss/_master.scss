@@ -238,14 +238,14 @@ a,div{
 
 
 .header{}
-.head_info{position: absolute;right: 17px;top: 17px; z-index: 1;}
-.header_profile{display: flex;align-items: center; background: #344767;border: 0;border-radius: 120px;padding: 0 50px 0 0;}
+.head_info{position: absolute;right: 17px;top: 17px; z-index: 2;}
+.header_profile{display: flex;align-items: center; background: #333;border: 0;border-radius: 120px;padding: 0 50px 0 0;}
 .header_profile span::before{content: '';position: absolute;background: url('assets/images/caret-down.png'); width: 24px;height: 21px; right: 10px;}
 .header_profile.active span::before{content: '';position: absolute;background: url('assets/images/caret-up.png'); width: 24px;height: 21px; right: 10px;}
 
-.header_info .dropdown{background: #344767;display: block;padding: 20px 0;margin-top: 5px;border-radius: 10px;}
+.header_info .dropdown{background: #333;display: block;margin-top: 5px;border-radius: 10px;z-index: 9;position: absolute;left: 0;right: 0;top: 100%;}
 .header_info .dropdown ul li a{display: block;line-height: 25px;font-size: 18px;color: #fff;font-weight: 500;padding: 0 20px;}
-.header_info .dropdown ul li a:hover{background: #ffe98a;color: #000;}
+.header_info .dropdown ul li a:hover{background: #fff;color: #969696;}
 
 
 .header_profile figure{width: 37px;height: 37px;display: flex;align-items: center;justify-content: center; background: #000;border-radius: 50%;margin-right: 10px;}
@@ -254,10 +254,10 @@ a,div{
 .navbar{display: inline-block;width: 301px;background: #333;border-top-right-radius: 10px;border-bottom-right-radius: 10px;}
 .navbar_con{min-height: calc(100vh - 0px);}
 .main_logo a{display: block;padding: 50px 0 50px 25px;position: relative;border-bottom: solid 1px #fff;}
-.navbar ul{list-style: none;padding: 20px 0;}
+.navbar ul{list-style: none;padding: 0 0;}
 .navbar ul li{border-bottom: solid 1px #fff;}
-.navbar ul li:hover{background: #ffe98a;}
-.navbar ul li:hover a span{color: #000;}
+.navbar ul li:hover{background: #fff;}
+.navbar ul li:hover a span{color: #969696;}
 .navbar ul li:hover a span::before{filter: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(7500%) hue-rotate(59deg) brightness(105%) contrast(111%);}
 .navbar ul li a{display: block;padding-left: 70px;}
 .navbar ul li a span{font-size: 19px;line-height: 46px;color: #fff;position: relative;}
@@ -380,6 +380,9 @@ a,div{
             form{
                 display: flex;
                 gap: 15px;
+                h4{
+                    margin-bottom: 10px;
+                }
                 .form_con{
                     width: 45%;
                 }
@@ -444,6 +447,149 @@ a,div{
 }
 
 
+.maintenance_area{
+    display: inline-block;width: calc(100% - 301px);vertical-align: top;
+    .sliding_modal{
+        top: 0;
+        height: calc(100vh - 0px);
+    }
+    .maintenance_con{
+        padding: 60px 20px 60px 50px;
+        h1{
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 100%;
+            margin-bottom: 40px;
+        }
+
+        .custom_datatable table {
+            min-width: 1000px;
+        }
+        
+
+        .header_button{
+            position: absolute;
+            right: 20px;
+            top: 62px;
+            right: 20px;
+            z-index: 1;
+            background: #333;
+
+            .btn{
+                display: inline-block;
+                vertical-align: top;
+                font-size: 14px;
+                color: #fff;
+                font-weight: 600;
+                width: auto;
+                max-width: 100%;
+                min-width: 120px;
+                text-align: center;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                    border-top-color: transparent;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                    border-left-color: transparent;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+                line-height: 1.5;
+                padding: 13.5px 20px;
+                letter-spacing: 0.5px;
+                position: relative;
+                transition: ease 0.2s;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+.reservation_area{
+    display: inline-block;width: calc(100% - 301px);vertical-align: top;
+    .sliding_modal{
+        top: 0;
+        height: calc(100vh - 0px);
+    }
+    .reservation_con{
+        padding: 60px 20px 60px 50px;
+        h1{
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 100%;
+            margin-bottom: 40px;
+        }
+
+        .custom_datatable table {
+            min-width: 1000px;
+        }
+        
+
+        .header_button{
+            position: absolute;
+            right: 20px;
+            top: 62px;
+            right: 20px;
+            z-index: 1;
+            background: #333;
+
+            .btn{
+                display: inline-block;
+                vertical-align: top;
+                font-size: 14px;
+                color: #fff;
+                font-weight: 600;
+                width: auto;
+                max-width: 100%;
+                min-width: 120px;
+                text-align: center;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                    border-top-color: transparent;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                    border-left-color: transparent;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+                line-height: 1.5;
+                padding: 13.5px 20px;
+                letter-spacing: 0.5px;
+                position: relative;
+                transition: ease 0.2s;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+        table{
+            thead{
+                .user_reserv_action{
+                    background: #414042;
+                }
+            }
+            tbody{
+                .user_reserv_action{
+                    background: #fff;
+                }
+            }
+            .user_reserv_action{
+                position: sticky;
+                right: 0;
+                z-index: 1;
+            }
+        }
+
+        
+    }
+}
 
 /*Room List User*/
 .room_boxes{display: flex;flex-wrap: wrap;gap: 15px;margin: 50px 0 0 50px;height: calc(100vh - 115px);overflow: auto;}
@@ -470,6 +616,77 @@ a,div{
 
 .room_box .room_rating{display: flex;align-items: center;position: absolute;right: 0;top: 20px;}
 .room_box .room_rating span{display: block;margin-left: 5px;}
+
+.room_box{
+    button{
+        display: block;
+        width: 100%;
+        font-size: 19px;
+        line-height: 35px;
+        text-align: center;
+        background: #fff;
+        border: solid 1px #b0b0b0;
+        margin-top: 10px;
+        border-radius: 3px;
+        &:hover{
+            background: #333;
+            color: #fff;
+        }
+    }
+}
+
+.calendar_con{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 5;
+    .calendar_close{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        right: 0;
+        svg{
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+        }
+    }
+    .calendar_picker {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        h4{
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .calendar_btn{
+            display: flex;
+            justify-content: space-between;
+            button{
+                margin-top: 10px;
+                display: block;
+                width: 48.5%;
+                background: transparent;
+                color: #fff;
+                border: solid 1px #fff;
+                line-height: 40px;
+                &:last-child{
+                    border: solid 1px #000;
+                    color: #fff;
+                    background: #000;
+                }
+            }
+        }
+    }
+}
 
 .burder_icon{
     display: none;

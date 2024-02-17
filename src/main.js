@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
 
 require('@/store/subscriber')
 
@@ -13,3 +15,6 @@ store.dispatch('auth/attempt', localStorage.getItem('token'))
 .then(()=>{
     createApp(App).use(store).use(router).mount('#app')
 });
+const app = createApp(App);
+
+app.use(VCalendar, {})
