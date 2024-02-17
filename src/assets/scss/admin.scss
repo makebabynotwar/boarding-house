@@ -51,6 +51,7 @@
         max-width: 100%;
         float: right;
         transition: width ease 0.2s;
+        position: relative;
     }
 
     .inner_content{
@@ -111,7 +112,9 @@
                 &.rooms{
                     background: #009245;
                 }
-
+                &.m_earnings{
+                    background: #87CEEB;
+                }
                 h2{
                     font-size: 30px;
                     font-weight: 600;
@@ -139,6 +142,36 @@
 
 
     
+}
+
+.delete_modal{
+    min-height: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    border: solid 1px #b0b0b0;
+    padding: 25px;
+    h4{
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .flex_box{
+        justify-content: center;
+        button{
+            &:nth-child(1){
+                background: #333;
+                color: #fff;
+            }
+            &:last-child{
+                background: #009245;
+            }
+        }
+    }
 }
 
 .custom_datatable {

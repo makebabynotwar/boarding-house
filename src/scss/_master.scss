@@ -421,6 +421,16 @@ a,div{
 
                     }
                 }
+                &.file{
+                    img{
+                        width: 150px;
+                        height: 150px;
+                        border: solid 1px #b0b0b0;
+                    }
+                    input{
+                        border: 0;
+                    }
+                }
             }
             button{
                 display: block;
@@ -842,6 +852,82 @@ a,div{
         }
     }
 
+    .user_area{
+        width: 100%;
+        padding: 40px 25px;
+        .user_con{
+            min-height: 0;
+            padding: 0;
+            .user_info{
+                padding: 0;
+                .user_heading{
+                    display: block;
+                }
+                h1{
+                    text-align: center;
+                }
+            }
+            .user_form{
+                form{
+                    display: block;
+                    .form_con{
+                        width: 100%;
+                        max-width: 800px;
+                        margin: 0 auto;
+                    }
+                    h4{
+                        text-align: center;
+                    }
+                    .field{
+                        img{
+                            display: block;
+                            margin: 0 auto;
+                        }
+                        input{
+                            text-align: center;
+                        }
+                        
+                    }
+                }
+                button{
+                    margin: 0 auto;
+                }
+                .button_box{
+                    justify-content: center;
+                    button{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    .reservation_area .reservation_con {
+        padding: 0;
+        min-height: 0;
+        }
+    .reservation_area {
+        width: 100%;
+        padding: 40px 25px;
+    }
+
+    .maintenance_area .maintenance_con {
+        padding: 0;
+        min-height: 0;
+        h1{
+            padding-right: 221px;
+        }
+        .header_button{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .maintenance_area {
+        width: 100%;
+        padding: 40px 25px;
+    }
 }
 
 
@@ -857,6 +943,10 @@ a,div{
 
     .room_box{
         width: 47.5%;
+    }
+
+    .sliding_modal{
+        width: 100% !important;
     }
 
 }

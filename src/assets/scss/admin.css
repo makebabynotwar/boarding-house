@@ -47,6 +47,7 @@
   max-width: 100%;
   float: right;
   transition: width ease 0.2s;
+  position: relative;
 }
 .admin-page .inner_content {
   height: calc(100vh - 0px);
@@ -104,6 +105,9 @@
 .admin-page .default_container .dashboard_boxes .dashboard_box.rooms {
   background: #009245;
 }
+.admin-page .default_container .dashboard_boxes .dashboard_box.m_earnings {
+  background: #87CEEB;
+}
 .admin-page .default_container .dashboard_boxes .dashboard_box h2 {
   font-size: 30px;
   font-weight: 600;
@@ -123,6 +127,34 @@
   font-size: 15px;
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
+}
+
+.delete_modal {
+  min-height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: solid 1px #b0b0b0;
+  padding: 25px;
+}
+.delete_modal h4 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.delete_modal .flex_box {
+  justify-content: center;
+}
+.delete_modal .flex_box button:nth-child(1) {
+  background: #333;
+  color: #fff;
+}
+.delete_modal .flex_box button:last-child {
+  background: #009245;
 }
 
 .custom_datatable {

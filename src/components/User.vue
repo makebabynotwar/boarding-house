@@ -6,9 +6,17 @@
                     <div class="user_heading">
                         <h1>Personal info</h1>
                     </div>
+                    
                     <div class="user_form">
                         <form>
+                            
                             <div class="form_con 1">
+                                <h4>User Profile</h4>
+                                <div class="field file">
+                                    <img src="../assets/icon_profile.png" alt="User"/>
+                                    <input v-if="edit_details"  type="file"/>
+                                    
+                                </div>
                                 <h4>Personal Details</h4>
                                 <div class="field">
                                     <p>First Name:</p>
