@@ -12,37 +12,46 @@
                     <div class="filter_con">
                         <div class="price_range_con">
                             <h4>Price Range</h4>
-                            <div class="price_range">
-                                <button type="button" :class="active" @click="price_dropdown = !price_dropdown">4000 - 5000</button>
+                            <div class="price_range prices">
+                                <button type="button" @click="toggleDropdown('price_dropdown')">{{selected_price.name}}</button>
                                 <ul class="dropdown" v-if="price_dropdown">
-                                    <li :class="active"><span>5000 and above</span></li>
-                                    <li><span>4000 - 5000</span></li>
-                                    <li><span>1500 - 4000</span></li>
-                                    <li><span>1500 and below</span></li>
+                                    <li 
+                                        :class="{ active: selected_price.name == price.name }" 
+                                        v-for="price in prices"
+                                        @click="selectFilter('price_dropdown', price)"
+                                    >
+                                        {{price.name}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="price_range_con">
                             <h4>Room Capacity</h4>
                             <div class="price_range">
-                                <button type="button" :class="active" @click="capacity_dropdown = !capacity_dropdown">1</button>
+                                <button type="button" @click="toggleDropdown('capacity_dropdown')">{{selected_capacity}}</button>
                                 <ul class="dropdown" v-if="capacity_dropdown">
-                                    <li :class="active"><span>1</span></li>
-                                    <li><span>2</span></li>
-                                    <li><span>3</span></li>
-                                    <li><span>4</span></li>
-                                    <li><span>5</span></li>
+                                    <li 
+                                        :class="{ active: selected_capacity  == capacity }" 
+                                        v-for="capacity in capacities"
+                                        @click="selectFilter('capacity_dropdown', capacity)"
+                                    >
+                                        {{capacity}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="price_range_con">
                             <h4>Room Type</h4>
                             <div class="price_range">
-                                <button type="button" :class="active" @click="room_type_dropdown = !room_type_dropdown">Single</button>
+                                <button type="button" @click="toggleDropdown('room_type_dropdown')">{{selected_type}}</button>
                                 <ul class="dropdown" v-if="room_type_dropdown">
-                                    <li :class="active"><span>Single</span></li>
-                                    <li><span>Double</span></li>
-                                    <li><span>Suite</span></li>
+                                    <li 
+                                        :class="{ active: selected_type  == type }" 
+                                        v-for="type in room_types"
+                                        @click="selectFilter('room_type_dropdown', type)"
+                                    >
+                                        {{type}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -50,17 +59,18 @@
                 </div>
                 <div class="room_boxes">
                     <div class="room_box" v-for="room in rooms">
-                        <img :src="room.images[0]"/>
+                        <img src="https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720"/>
                         <div class="room_details">
-                            <h2>{{ room.house_name }}</h2>
-                            <p class="room_address"> {{ room.address }}</p>
+                            <h2>{{ room.room_name }} <span>- {{room.type}}</span></h2>
+                            <!-- <p class="room_address"> {{ room.address }}</p> -->
                             <div class="room_cont">
                                <div class="flex_box">
                                     <p class="room_capacity">Good for {{ room.capacity }}</p> 
-                                    <p class="room_electric">{{ room.electricity }}</p>
-                                    <p class="room_water">{{ room.water }}</p>
+                                    <p class="room_electric">{{room.amenities.Electricity ? 'Free' : ''}}</p>
+                                    <p class="room_water">{{room.amenities.Water ? 'Free' : ''}}</p>
+                                    <p>{{room.amenities}}</p>
                                </div>
-                                <p class="room_price"><span>₱{{room.price}}</span> / month</p>     
+                                <p class="room_price"><span>₱{{room.monthly_fee}}</span> / month</p>     
                             </div>
                             <div class="room_rating">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display: block; height: 12px; width: 12px; fill: currentcolor;" aria-hidden="true" role="presentation" focusable="false"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>
@@ -95,6 +105,7 @@
 
 <script>
 import { Calendar,DatePicker } from 'v-calendar';
+import axios from 'axios'
 export default {
     components: {
         Calendar,
@@ -102,151 +113,73 @@ export default {
     },
     data(){
         return{
-            rooms:[
-                {
-                    house_name : 'Angels Dormitory',
-                    address : 'Cebu City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'],
-                    rate : 4.8,
-                    price : 5000,
-                    water : 100,
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Bmax Apartelle',
-                    address : 'Pardo City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 5,
-                    price : 5000,
-                    water : 'free',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Angels Dormitory',
-                    address : 'Cebu City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 4.8,
-                    price : 5000,
-                    water : 100,
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Bmax Apartelle',
-                    address : 'Pardo City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 4.9,
-                    price : 5000,
-                    water : 'free',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Bmax Apartelle',
-                    address : 'Pardo City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 5,
-                    price : 5000,
-                    water : '300',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Angels Dormitory',
-                    address : 'Cebu City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 4.9,
-                    price : 5000,
-                    water : '300',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Bmax Apartelle',
-                    address : 'Pardo City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 5,
-                    price : 5000,
-                    water : '300',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Angels Dormitory',
-                    address : 'Cebu City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 4.9,
-                    price : 5000,
-                    water : '300',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-                {
-                    house_name : 'Bmax Apartelle',
-                    address : 'Cebu City',
-                    introduction : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,"',
-                    images : [
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720',
-                        'https://a0.muscache.com/im/pictures/53efff39-8ad1-4a94-b678-a9f614eaed0a.jpg?im_w=720'
-                    ],
-                    rate : 5,
-                    price : 5000,
-                    water : '300',
-                    electricity : 'metered',
-                    capacity : 2,
-                },
-            ],
+            rooms:[],
             price_dropdown : false,
             capacity_dropdown : false,
             room_type_dropdown : false,
             reserve_popup : false,
+            selected_price: null,
+            selected_capacity: null,
+            selected_type: null,
+            capacities: [1, 2, 3, 4],
+            room_types: ['single', 'double', 'suite'],
+            prices: [
+                {
+                    name: '5000 and above',
+                    min: 5000,
+                    max: null,
+                },
+                {
+                    name: '4000 - 5000',
+                    min: 4000,
+                    max: 5000,
+                },
+                {
+                    name: '1500 - 4000',
+                    min: 1500,
+                    max: 4000,
+                },
+                {
+                    name: '1500 and below',
+                    min: 0,
+                    max: 1500,
+                },
+            ],
+
         }
+    },
+    created() {
+        this.selected_price = this.prices[0];
+        this.selected_capacity = this.capacities[0];
+        this.selected_type = this.room_types[0];
+        axios.get('/rooms/get')
+        .then(res=>{
+            console.log(res.data)
+            this.rooms = res.data
+        })
     },
     methods:{
         reserveBtn(){
             this.reserve_popup = true;
+        },
+        toggleDropdown(selected_dropdown) {
+            const dropdowns = ['price_dropdown', 'capacity_dropdown', 'room_type_dropdown'];
+            if (this[selected_dropdown]) {
+                this[selected_dropdown] = false;
+                return;
+            }
+            dropdowns.forEach(dropdown=>{
+                this[dropdown] = (dropdown == selected_dropdown)
+            })
+        },
+        selectFilter(dropdown, value) {
+            this[dropdown] = false;
+            if (dropdown == 'price_dropdown')
+                this.selected_price = value;
+            else if (dropdown == 'capacity_dropdown')
+                this.selected_capacity = value;
+            else if (dropdown == 'room_type_dropdown')
+                this.selected_type = value;
         }
     }
 

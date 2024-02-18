@@ -19,8 +19,7 @@
 				placeholder="Password"
 				required
 			>
-			<div v-if="loadState" class="loader">Authenticating...</div>
-			<button class="login" v-else type="submit">Login</button>
+			<button :class="['login', { load: loading }]" :disabled="loading" type="submit">Login</button>
 			<div class="error" v-if="error.mode">
 				<small>Incorrect email or password.</small>
 			</div>
@@ -41,7 +40,7 @@ export default {
 				mode: false,
 				message: ''
 			},
-			loadState: false
+			loading: false
 		}
 	},
 	methods: {
@@ -49,16 +48,16 @@ export default {
 			login: 'auth/login'
 		}),
 		submitCredentials(){
-			this.loadState = true;
+			this.loading = true;
 			this.login(this.form)
 			.then(()=>{
 				this.error.mode = false;
-				this.loadState = false;
-				
+				this.loading = false;
+				this.$router.push('/room-list')
 			})
 			.catch(()=>{
 				this.error.mode = true;
-				this.loadState = false;
+				this.loading = false;
 			})
 		}
 	}
@@ -67,5 +66,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.login-form {
+	.error {
+	    text-align: center;
+	    color: red;
+	}
+}
 </style>

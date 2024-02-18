@@ -1,41 +1,51 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import isAdmin from '@/middlewares/isAdmin'
+import isAdmin from '@/middlewares/isAdmin';
+import isTenant from '@/middlewares/isTenant';
+import isAuthenticated from '@/middlewares/isAuthenticated';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: ()=>import(`@/pages/LandingPage`)
+    name: 'landing-page',
+    component: ()=>import(`@/pages/LandingPage`),
+    beforeEnter: isAuthenticated,
   },
   {
     path: '/login',
     name: 'login',
-    component: ()=>import(`@/pages/LoginPage`)
+    component: ()=>import(`@/pages/LoginPage`),
+    beforeEnter: isAuthenticated,
+
   },
   {
     path: '/register',
     name: 'register',
-    component: ()=>import(`@/pages/RegisterPage`)
+    component: ()=>import(`@/pages/RegisterPage`),
+    beforeEnter: isAuthenticated,
   },
   {
     path: '/room-list',
     name: 'roomlist',
-    component: ()=>import(`@/pages/BoardingRooms`)
+    component: ()=>import(`@/pages/BoardingRooms`),
+    beforeEnter: isTenant,
   },
   {
-    path: '/user',
+    path: '/user-profile',
     name: 'user',
-    component: ()=>import(`@/pages/UserPage`)
+    component: ()=>import(`@/pages/UserPage`),
+    beforeEnter: isTenant,
   },
   {
     path: '/maintenance',
     name: 'maintenance',
-    component: ()=>import(`@/pages/MaintenancePage`)
+    component: ()=>import(`@/pages/MaintenancePage`),
+    beforeEnter: isTenant,
   },
   {
-    path: '/reservation',
+    path: '/reservations',
     name: 'reservation',
-    component: ()=>import(`@/pages/ReservationPage`)
+    component: ()=>import(`@/pages/ReservationPage`),
+    beforeEnter: isTenant,
   },
   {
     path: '/admin',

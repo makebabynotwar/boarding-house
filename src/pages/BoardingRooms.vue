@@ -11,6 +11,7 @@
 import Header from '@/components/Header/Header';
 import Nav from '@/components/Nav/NavBar';
 import Main from '@/components/Main';
+import axios from 'axios';
 export default {
     components: {
         Header,
@@ -19,8 +20,12 @@ export default {
     },
     data(){
         return{
-            mobile_nav : false
+            mobile_nav : false,
+            
         }
+    },
+    created(){
+        this.$store.dispatch('title/setTitle', 'Room List');
     }
 }
 </script>

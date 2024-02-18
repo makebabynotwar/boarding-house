@@ -12,8 +12,8 @@
                         </button>
                         <div class="dropdown" v-if="dropdown">
                             <ul>
+                                <li><router-link to="user-profile">User Profile</router-link></li>
                                 <li><a href="">Logout</a></li>
-                                <li><a href="">User Profile</a></li>
 
                             </ul>
                         </div>
