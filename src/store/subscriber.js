@@ -2,7 +2,6 @@
 import store from '@/store'
 import axios from 'axios'
 
-
 store.subscribe((mutation)=>{
     // console.log('subscribe');
     switch(mutation.type){
@@ -13,6 +12,7 @@ store.subscribe((mutation)=>{
             } else {
                 axios.defaults.headers.common['Authorization'] = null;
                 localStorage.removeItem('token');
+                window.location.ref = '/'
             }
             break;
     }

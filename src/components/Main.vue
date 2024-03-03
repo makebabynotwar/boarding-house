@@ -4,7 +4,7 @@
             <div class="main_con">
                 <div class="search_con">
                     <div class="search_box">
-                        <input class="search_input" type="text" placeholder="Search place or boarding house"/>
+                        <input class="search_input" v-model="keyword" type="text" placeholder="Search place or boarding house"/>
                         <button class="search_button">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11V11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#bababa"></path></svg>
                         </button>
@@ -68,8 +68,8 @@
                                     <p class="room_capacity">Good for {{ room.capacity }}</p> 
                                     <p class="room_electric">{{room.amenities.Electricity ? 'Free' : ''}}</p>
                                     <p class="room_water">{{room.amenities.Water ? 'Free' : ''}}</p>
-                                    <p>{{room.amenities}}</p>
                                </div>
+                                <p style="display: block;" v-for="(key, value) in room.amenities">{{value}} : {{key ? 'Yes' : 'No'}} <br/></p>
                                 <p class="room_price"><span>₱{{room.monthly_fee}}</span> / month</p>     
                             </div>
                             <div class="room_rating">
@@ -112,7 +112,7 @@ export default {
         DatePicker
     },
     data(){
-        return{
+        return {
             rooms:[],
             price_dropdown : false,
             capacity_dropdown : false,
@@ -121,31 +121,65 @@ export default {
             selected_price: null,
             selected_capacity: null,
             selected_type: null,
+            keyword: '',
             capacities: [1, 2, 3, 4],
             room_types: ['single', 'double', 'suite'],
             prices: [
                 {
+                    name: 'All',
+                    min: null,
+                    max: null,
+                    id: 1,
+                },
+                {
                     name: '5000 and above',
                     min: 5000,
                     max: null,
+                    id: 2,
                 },
                 {
                     name: '4000 - 5000',
                     min: 4000,
                     max: 5000,
+                    id: 3,
                 },
                 {
                     name: '1500 - 4000',
                     min: 1500,
                     max: 4000,
+                    id: 4,
                 },
                 {
                     name: '1500 and below',
                     min: 0,
                     max: 1500,
+                    id: 5,
                 },
             ],
 
+        }
+    },
+    computed: {
+        filtered_rooms() {
+            return this.filterRooms(this.keyword)
+        }
+    },
+    watch: {
+        selected_type(type) {
+            if (type == 'single')
+                this.selected_capacity = 1;
+            else if (type == 'double')
+                this.selected_capacity = 2;
+            else
+                this.selected_capacity = 3;
+        },
+        selected_capacity(capacity) {
+            if (capacity == 1)
+                this.selected_type = 'single';
+            else if (capacity == 2)
+                this.selected_type = 'double'
+            else
+                this.selected_type = 'suite'
         }
     },
     created() {
@@ -154,11 +188,17 @@ export default {
         this.selected_type = this.room_types[0];
         axios.get('/rooms/get')
         .then(res=>{
-            console.log(res.data)
             this.rooms = res.data
         })
     },
     methods:{
+        filterRooms(keyword){
+            if (!keyword)
+                return this.rooms
+            this.rooms.filter(room=>{
+                
+            })
+        },
         reserveBtn(){
             this.reserve_popup = true;
         },

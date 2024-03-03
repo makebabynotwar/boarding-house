@@ -13,7 +13,7 @@
                         <div class="dropdown" v-if="dropdown">
                             <ul>
                                 <li><router-link to="user-profile">User Profile</router-link></li>
-                                <li><a href="">Logout</a></li>
+                                <li><a href="javascript:;" @click="logout">Logout</a></li>
 
                             </ul>
                         </div>
@@ -34,13 +34,19 @@
 </template>
 
 <script>
-    export default{
-        data(){
-            return{
-                dropdown : false,
-            }
+import { mapActions } from 'vuex'
+export default{
+    data(){
+        return{
+            dropdown : false,
         }
+    },
+    methods: {
+        ...mapActions({
+            logout : 'auth/logout'
+        })
     }
+}
 
 </script>
 

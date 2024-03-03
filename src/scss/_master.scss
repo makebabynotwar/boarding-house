@@ -309,6 +309,7 @@ a,div{
 }
 
 .header_info .dropdown ul li a{
+    border: 1px solid #333;
     display: block;
     line-height: 25px;
     font-size: 18px;
@@ -574,7 +575,7 @@ a,div{
             }
             .field{
                 p{
-                    color: #b0b0b0;
+                    color: #454545;
                     font-family: inherit;
                     font-size: 1rem;
                     left: 0;
@@ -606,11 +607,22 @@ a,div{
 
                     }
                 }
-                &.file{
-                    img{
+                &.initals{
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    div{
                         width: 150px;
                         height: 150px;
-                        border: solid 1px #b0b0b0;
+                        /* border: solid 1px #b0b0b0; */
+                        background: #000;
+                        border-radius: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: white;
+                        text-transform: uppercase;
+                        font-size: 4.6rem;
                     }
                     input{
                         border: 0;

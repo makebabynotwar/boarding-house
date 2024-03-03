@@ -62,6 +62,9 @@ export default {
             commit('SET_TOKEN', null);
             commit('SET_USER', null);
         })
+        .catch(error=>{
+          console.error(error?.message ?? error)
+        })
       }
   }
 }

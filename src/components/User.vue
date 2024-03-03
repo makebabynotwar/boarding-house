@@ -12,38 +12,44 @@
                             
                             <div class="form_con 1">
                                 <h4>User Profile</h4>
-                                <div class="field file">
-                                    <img src="../assets/icon_profile.png" alt="User"/>
-                                    <input v-if="edit_details"  type="file"/>
-                                    
+                                <div class="field initals">
+                                    <div>{{user_initials}}</div>
                                 </div>
                                 <h4>Personal Details</h4>
                                 <div class="field">
                                     <p>First Name:</p>
-                                    <input type="text" :disabled="!edit_details">
+                                    <input v-model="form.first_name" type="text" :disabled="!edit_details">
+                                </div>
+                                <div class="field">
+                                    <p>Middle Name:</p>
+                                    <input v-model="form.middle_name" type="text" :disabled="!edit_details">
                                 </div>
                                 <div class="field">
                                     <p>Last Name:</p>
-                                    <input type="text" :disabled="!edit_details">
+                                    <input v-model="form.last_name" type="text" :disabled="!edit_details">
                                 </div>
                                 <div class="field">
                                     <p>Address:</p>
-                                    <input type="text" :disabled="!edit_details">
+                                    <input v-model="form.address" type="text" :disabled="!edit_details">
                                 </div>
                                 <div class="field">
-                                    <p>Emergency Contact:</p>
-                                    <input type="text" :disabled="!edit_details">
+                                    <p>Contact:</p>
+                                    <input v-model="form.contact_number" type="text" :disabled="!edit_details">
                                 </div>
                             </div>
                             <div class="form_con 2">
                                 <h4>Login Details</h4>
                                 <div class="field">
                                     <p>Email:</p>
-                                    <input type="email" :disabled="!edit_details">
+                                    <input v-model="form.email" type="email" :disabled="!edit_details">
                                 </div>
-                                <div class="field">
-                                    <p>Password:</p>
-                                    <input type="password" :disabled="!edit_details">
+                                <div class="field" v-if="edit_details">
+                                    <p>New Password:</p>
+                                    <input v-model="form.new_password" type="password" :disabled="!edit_details">
+                                </div>
+                                <div class="field" v-if="edit_details">
+                                    <p>Confirm Password:</p>
+                                    <input v-model="form.confirm_password" type="password" :disabled="!edit_details">
                                 </div>
                             </div>
                         </form>
@@ -64,6 +70,7 @@
 
 <script>
 import { Calendar,DatePicker } from 'v-calendar';
+import { mapGetters } from 'vuex'
 export default {
     components:{
         Calendar,
@@ -73,6 +80,48 @@ export default {
         return{
             edit_details: false,
             date : null,
+            form: {
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                address: '',
+                contact_number: '',
+                email: '',
+                new_password: '',
+                confirm_password: '',
+            }
+        }
+    },
+    computed: {
+        ...mapGetters({
+            user: 'auth/user'
+        }),
+        user_initials() {
+            if (this.user){
+                const fn_initial = this.user.first_name.charAt(0);
+                const ln_inital = this.user.last_name.charAt(0);
+                return fn_initial + ln_inital;
+            }
+            return ''
+        }
+    },
+    watch: {
+        edit_details(edit) {
+            if (!edit)
+                this.setForm();
+        }
+    },
+    created(){
+        this.setForm();
+    },
+    methods: {
+        setForm(){
+            this.form.first_name = this.user.first_name;
+            this.form.middle_name = this.user.middle_name;
+            this.form.last_name = this.user.last_name;
+            this.form.address = this.user.address;
+            this.form.contact_number = this.user.contact_number;
+            this.form.email = this.user.email;
         }
     }
 }
