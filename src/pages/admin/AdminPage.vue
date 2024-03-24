@@ -12,6 +12,7 @@
                     <li><a href="/admin/amenities"><em class="nav_icon rooms"></em> <span>Amenities</span></a></li>
                     <li><a href="/admin/maintenance"><em class="nav_icon maintenance"></em> <span>Maintenance Request</span></a></li>
                     <li><a href="/admin/reports"><em class="nav_icon reports"></em> <span>Reports and Sales</span></a></li>
+                    <li><a href="/" @click="logout"><em class="nav_icon reports"></em> <span>Logout</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -23,10 +24,14 @@
 </template>
 
 <script>
-
-    export default {
-        
+import { mapActions } from 'vuex'
+export default {
+    methods: {
+        ...mapActions({
+            logout : 'auth/logout'
+        })
     }
+}
 </script>
 
 <style lang="scss" scoped>

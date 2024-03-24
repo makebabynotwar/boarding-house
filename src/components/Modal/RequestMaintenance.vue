@@ -24,7 +24,7 @@
 
         <div class="buttons industry">
             <button type="button" class="btn small border_grey" @click="$emit('close')">Cancel</button> 
-            <button type="submit" class="btn small orange">Submit</button>
+            <button type="submit" @click="sendRequestMaintainance" class="btn small orange">Submit</button>
         </div>
     </div>
 </template>

@@ -9,7 +9,7 @@
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11V11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#bababa"></path></svg>
                         </button>
                     </div>
-                    <div class="filter_con">
+                    <!-- <div class="filter_con">
                         <div class="price_range_con">
                             <h4>Price Range</h4>
                             <div class="price_range prices">
@@ -55,7 +55,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="room_boxes">
                     <div class="room_box" v-for="room in rooms">
@@ -76,27 +76,41 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display: block; height: 12px; width: 12px; fill: currentcolor;" aria-hidden="true" role="presentation" focusable="false"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>
                                 <span>{{ room.rate }}</span>
                             </div>
-                            <button class="reservation" type="button" @click="reserveBtn()">Reservation</button>
+                            <button class="reservation" type="button" @click="reserveBtn(room.id)">Reservation</button>
                         </div>
                     </div>
                 </div>
             </div>
             
         </div>
-        <div class="calendar_con" v-if="reserve_popup">
-            <a href="javascript:;" class="calendar_close" @click="reserve_popup = false">
-                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="calendar_con" v-if="reserve_popup && room_id_selected">
+            <div class="calendar_picker">
+                <a href="javascript:;" class="calendar_close" @click="reserve_popup = false">
+                    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" fill="white"/>
                         <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-            <div class="calendar_picker">
-                <h4>Pick your date for reservation</h4>
-                <DatePicker v-model.range="range" mode="dateTime" :min-date="new Date()"/>
+                    </svg>
+                </a>
+                <h1>Make Your Reservation</h1>
+                <div class="dates">
+                    <p>Start Date: <span>{{formatDate(reservation.start_date)}}</span> &nbsp;-&nbsp; End Date: <span>{{reservation.end_date ? formatDate(reservation.end_date) : ''}}</span></p>
+                    
+                </div>
+                <DatePicker v-model="reservation.start_date" mode="date" :min-date="new Date()"/>
+                <!-- <input type="date" v-mode="reservaton.start_date" /> -->
+                <div class="months-selector" >
+                    <label for="months">Duration: </label>
+                    <select id="months" v-model="reservation.months">
+                        <option disabled value="">Please select</option>
+                        <option v-for="month in months_list" :key="month" :value="month">{{ getMonthDisplay(month) }}</option>
+                    </select>
+                    <div class="fee"> Fee: <span>P{{total_fee.toLocaleString()}}</span></div>
+
+                </div>
                 <div class="calendar_btn">
                     <button @click="reserve_popup = false">Cancel</button>
-                    <button>Proceed</button>
+                    <button :class="{ loading: loading }" @click="reserveRoom">Reserve {{ room_name }}</button>
                 </div>
             </div>
         </div>
@@ -105,6 +119,7 @@
 
 <script>
 import { Calendar,DatePicker } from 'v-calendar';
+import { format } from 'date-fns';
 import axios from 'axios'
 export default {
     components: {
@@ -122,6 +137,13 @@ export default {
             selected_capacity: null,
             selected_type: null,
             keyword: '',
+            reservation: {
+                start_date: new Date(),
+                end_date: null,
+                months: null,
+            },
+            loading: false,
+            room_id_selected: null,
             capacities: [1, 2, 3, 4],
             room_types: ['single', 'double', 'suite'],
             prices: [
@@ -156,12 +178,24 @@ export default {
                     id: 5,
                 },
             ],
+            months_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
         }
     },
     computed: {
         filtered_rooms() {
             return this.filterRooms(this.keyword)
+        },
+        room_name() {
+            const room = this.rooms.find(room=> room.id == this.room_id_selected)
+            return room ? room.room_name : '';
+        },
+        total_fee() {
+            const room = this.rooms.find(room=> room.id == this.room_id_selected)
+            if (room)
+                return room.monthly_fee * this.reservation.months;
+            else
+                return 0;
         }
     },
     watch: {
@@ -180,6 +214,12 @@ export default {
                 this.selected_type = 'double'
             else
                 this.selected_type = 'suite'
+        },
+        'reservation.months'(number_of_months) {
+            this.calculateEndDate(number_of_months);
+        },
+        'reservation.start_date'() {
+            this.calculateEndDate(this.reservation.months);
         }
     },
     created() {
@@ -190,6 +230,7 @@ export default {
         .then(res=>{
             this.rooms = res.data
         })
+        this.reservation.months = 1;
     },
     methods:{
         filterRooms(keyword){
@@ -199,8 +240,10 @@ export default {
                 
             })
         },
-        reserveBtn(){
+        reserveBtn(room_id){
+            this.room_id_selected = room_id;
             this.reserve_popup = true;
+            console.log(this.room_id_selected, this.reserve_popup);
         },
         toggleDropdown(selected_dropdown) {
             const dropdowns = ['price_dropdown', 'capacity_dropdown', 'room_type_dropdown'];
@@ -220,12 +263,77 @@ export default {
                 this.selected_capacity = value;
             else if (dropdown == 'room_type_dropdown')
                 this.selected_type = value;
-        }
+        },
+        formatDate(date){
+            return format(date, 'MMM dd, yyyy');
+        },
+        calculateEndDate(number_of_months) {
+            this.reservation.end_date = new Date(this.reservation.start_date);
+  
+            // Get the current month and year
+            const current_month = this.reservation.end_date.getMonth();
+            const current_year = this.reservation.end_date.getFullYear();
+
+            // Calculate the new month and year after adding the specified number of months
+            const new_month = current_month + number_of_months;
+            const years_to_add = Math.floor(new_month / 12);
+            const final_year = current_year + years_to_add;
+            const final_month = (current_month + number_of_months) % 12;
+
+            // Set the new month and year to the new date
+            this.reservation.end_date.setFullYear(final_year);
+            this.reservation.end_date.setMonth(final_month);
+        },
+        getMonthDisplay(month) {
+            if (month == 12)
+                return '1 year'
+            else
+                return `${month} ${month > 1 ? 'months' : 'month'}`
+        },
+        reserveRoom(){
+            this.loading = true;
+            const form_data = new FormData();
+
+            const room = this.rooms.find(room=> room.id == this.room_id_selected);
+            if (room) {
+                form_data.append('start_date', this.reservation.start_date);
+                form_data.append('end_date', this.reservation.end_date);
+                form_data.append('months', this.reservation.months);
+                form_data.append('room_id', room.id);
+    
+                axios.post('reservation/add', form_data)
+                .then(res=>{
+                    console.log(res);
+                    this.reserve_popup = false;
+                    this.room_id_selected = null;
+                    alert('Successfully made a reservation!');
+                })
+                .finally(()=>{
+                    this.loading = false;
+                })
+            }
+            else {
+                alert('Something went wrong.');
+                this.loading = false;
+            }
+        },
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
-
+.search_con{
+    display: flex !important;
+    justify-content: flex-start;
+    .search_box {
+        align-self: flex-end;
+        width: 23%;
+        margin-right: 17px;
+        margin-bottom: 0;
+    }
+    .filter_con{
+        width: 53%;
+    }
+}
 </style>
