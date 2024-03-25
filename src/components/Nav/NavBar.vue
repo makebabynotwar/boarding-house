@@ -16,7 +16,7 @@
                         <router-link to='/room-list'><span class="room">List Of Rooms</span></router-link>
                     </li>
                     <li>
-                        <router-link to='/reservations'><span class="room">Reservation</span></router-link>
+                        <router-link to='/reservations'><span class="room">My Reservations</span></router-link>
                     </li>
                     <li>
                         <router-link to='/maintenance'><span class="room">Maintenance</span></router-link>

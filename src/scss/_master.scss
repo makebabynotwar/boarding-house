@@ -801,7 +801,7 @@ a,div{
 /*Room List User*/
 .room_boxes{display: flex;flex-wrap: wrap;gap: 15px;margin: 50px 0 0 50px;height: calc(100vh - 115px);overflow: auto;}
 .room_box{width: calc((100% - 60px) / 4);border-radius: 10px;}
-.room_box:hover{cursor: pointer;}
+// .room_box:hover{cursor: pointer;}
 .room_box img{max-height: 247px;border-radius: 10px;}
 .room_details{position: relative;padding: 20px 0;}
 .room_box h2{
@@ -835,7 +835,7 @@ a,div{
 .room_box .room_rating span{display: block;margin-left: 5px;}
 
 .room_box{
-    button{
+    button {
         display: block;
         width: 100%;
         font-size: 19px;
@@ -848,6 +848,10 @@ a,div{
         &:hover{
             background: #333;
             color: #fff;
+        }
+        &.disable {
+            cursor: default;
+            pointer-events: none;
         }
     }
 }

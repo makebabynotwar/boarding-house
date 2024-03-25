@@ -76,7 +76,10 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display: block; height: 12px; width: 12px; fill: currentcolor;" aria-hidden="true" role="presentation" focusable="false"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>
                                 <span>{{ room.rate }}</span>
                             </div>
-                            <button class="reservation" type="button" @click="reserveBtn(room.id)">Reservation</button>
+                            <button v-if="room.currently_renting" class="reservation disable" type="button" disabled>Can't reserve. Currently Renting.</button>
+                            <button v-else-if="room.pending_reservation" class="reservation disable" type="button" disabled>Reserved</button>
+                            <button v-else-if="room.occupied" class="reservation disable" type="button" disabled>Occupied</button>
+                            <button v-else class="reservation" type="button" @click="reserveBtn(room.id)">Reserve</button>
                         </div>
                     </div>
                 </div>
@@ -302,11 +305,13 @@ export default {
                 form_data.append('room_id', room.id);
     
                 axios.post('reservation/add', form_data)
-                .then(res=>{
-                    console.log(res);
+                .then(()=>{
                     this.reserve_popup = false;
                     this.room_id_selected = null;
                     alert('Successfully made a reservation!');
+                })
+                .catch(err=>{
+                    alert(err.response.message ?? 'Something went wrong.');
                 })
                 .finally(()=>{
                     this.loading = false;

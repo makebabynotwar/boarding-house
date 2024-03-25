@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     name: 'landing-page',
     component: ()=>import(`@/pages/LandingPage`),
-    beforeEnter: isAuthenticated,
+    
   },
   {
     path: '/login',
